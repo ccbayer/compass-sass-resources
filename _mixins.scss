@@ -1,0 +1,107 @@
+
+//
+// Create Triangles / Arrows in any direction using this mixin
+// OPTIONS:
+// direction (which way does the point face?)
+// size: font-size based.
+@mixin arrow($direction,$size,$color,$type:arrow){
+	width: 0;
+	height: 0;
+	display: inline-block;
+	$arrow: $size solid $color;
+	$transp: $size solid transparent;
+	@if ($type == arrow) { 
+		@if ($direction == right) {
+			border-top: $transp;
+			border-bottom: $transp;
+			border-left: $arrow;
+			.ie7 & {
+				vertical-align: middle;
+			}
+		}
+		@else if ($direction == left) {
+			border-top: $transp;
+			border-bottom: $transp;
+			border-right: $arrow;
+			.ie7 & {
+				vertical-align: middle;
+			}
+		}
+		@else if ($direction == up) {
+			border-left: $transp;
+			border-right: $transp;
+			border-bottom: $arrow;
+		}
+		@else if ($direction == down) {
+			border-left: $transp;
+			border-right: $transp;
+			border-top: $arrow;
+		}
+	}
+	@else if ($type == corner) {
+		@if ($direction == bottomright) {
+			border-bottom: $arrow;
+			border-right: $arrow;
+			border-left: $transp;
+			border-top: $transp;
+		}
+		@else if ($direction == bottomleft) {
+			border-bottom: $arrow;
+			border-left: $arrow;
+			border-right: $transp;
+			border-top: $transp;
+		}
+		@else if ($direction == topleft) {
+			border-left: $arrow;
+			border-top: $arrow;
+			border-right: $transp;
+			border-bottom: $transp;
+		}
+		@else if ($direction == topright) {
+			border-right: $arrow;
+			border-top: $arrow;
+			border-left: $transp;
+			border-bottom: $transp;
+		}
+	}
+}
+
+// basic 2 color background gradient mixin, no custom colorstops
+@mixin bg-grad($startcolor, $stopcolor, $startdir:left) {
+	background-color: $startcolor;
+	@include background-image(linear-gradient($startdir, $startcolor, $stopcolor));
+	background-image: -ms-linear-gradient($startdir, $startcolor 0%, $stopcolor 100%);
+	@if ($startdir == left) {
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$startcolor}, endColorstr=#{$stopcolor}, gradientType='1');    	
+	}
+	@else {
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$startcolor}, endColorstr=#{$stopcolor}, gradientType='0');    	
+	}
+}
+
+// old ie alpha-transparent backgrounds, must convert rbga() to #argb first
+// http://hammerspace.co.uk/2011/10/cross-browser-alpha-transparent-background-css
+@mixin oldietransbg($argbcode) {
+	background:none;
+	-ms-filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$argbcode},endColorstr=#{$argbcode});
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$argbcode},endColorstr=#{$argbcode});
+	zoom: 1;
+}
+
+// basic image replacement mixin
+@mixin image-repacement() {
+	display: block;
+	border: 0;
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	text-align: left;
+	direction: ltr;
+	*line-height: 0;
+	br {
+		display: none;
+	}
+}
+
