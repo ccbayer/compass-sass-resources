@@ -84,3 +84,43 @@
 	*zoom: 1;
 }
 
+
+//////////////////////////////////////
+/// PLUS / MINUS ON HOVER
+//////////////////////////////////////
+/*
+example markup:
+
+		<button class="expand">
+			<span class="plus"></span>
+			<span class="minus"></span>
+		</button>
+*/
+
+.expand {
+	width: 50px;
+	height: 50px;
+	background-color: #F00;
+	$height: 6px;
+	.plus,
+	.minus {
+		display: block;
+		margin: 0 auto;
+		width: 30px;
+		height: $height;
+		background: $FFF;
+		transition: .5s all ease-out;
+	}
+	.minus {
+		transform: rotate(90deg);
+		margin-top: -$height;
+	}
+	&:hover {
+		.plus {
+			transform: rotate(45deg);
+		}
+		.minus {
+			transform: rotate(-45deg);
+		}
+	}
+}
