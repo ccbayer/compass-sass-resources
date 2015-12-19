@@ -1,0 +1,148 @@
+
+/* BRAND COLORS EXAMPLE */
+// Based on the Chevron Corporate "tonal triads" scheme.
+
+// blues
+$darkblue: #0B2D71;
+$medblue: #0066b2;
+$lightblue: #009DD9;
+$themeblue: (
+	'darkblue': $darkblue,
+	'medblue': $medblue,
+	'lightblue' : $lightblue
+);
+
+// Teals
+$darkteal: #003653;
+$medteal: #00708C;
+$lightteal: #00B2BD;
+$themeteal: (
+	'darkteal': $darkteal,
+	'medteal': $medteal,
+	'lightteal': $lightteal
+);
+
+// greens
+$darkgreen: #444B0D;
+$medgreen: #769231;
+$lightgreen: #B2CC34;
+$themegreen: (
+	'darkgreen': $darkgreen,
+	'medgreen': $medgreen,
+	'lightgreen': $lightgreen
+);
+
+// Red
+$darkred: #58001C;
+$medred: #97002E;
+$lightred: #E21836;
+$themered: (
+	'darkred': $darkred,
+	'medred': $medred,
+	'lightred' : $lightred
+);
+
+// oranges
+$darkorange: #711B00;
+$medorange: #E5601F;
+$lightorange: #FAAB18;
+$themeorange: (
+	'darkorange': $darkorange,
+	'medorange': $medorange,
+	'lightorange': $lightorange
+);
+
+// purples
+$darkpurple: #3A0D36;
+$medpurple: #751269;
+$lightpurple: #BA3093;
+$themepurple: (
+	'darkpurple': $darkpurple,
+	'medpurple': $medpurple,
+	'lightpurple': $lightpurple
+);
+
+
+// neutral
+$darkgray: #6B6D6F;
+$medgray: #8C8F93;
+$lightgray: #DBDCDD;
+$darkgrey: $darkgray;
+$medgrey: $medgray;
+$lightgrey: $lightgray;
+$themegrey: (
+	'darkgrey': $darkgrey,
+	'medgrey': $medgrey,
+	'lightgrey': $lightgrey
+);
+
+
+$themes: (
+	'blue': $themeblue,
+	'teal': $themeteal,
+	'green': $themegreen,
+	'red': $themered,
+	'orange': $themeorange,
+	'purple': $themepurple,
+	'grey': $themegrey
+);
+
+@each $theme, $colors in $themes {
+	@each $currentColorTone, $currentColor in $colors {
+		.theme-#{$currentColorTone} {
+			background-color: $currentColor;
+		}
+
+		.hover-#{$currentColorTone} {
+			&:hover {
+				background-color: $currentColor;
+			}
+		}
+
+		.btn-#{$currentColorTone} {
+			@include button-variant($white, $currentColor, $currentColor);
+		}
+
+		.border-#{$currentColorTone} {
+			border-color: $currentColor;
+		}
+
+		.border-#{$currentColorTone}-after {
+			&:after {
+				border-color: $currentColor;
+			}
+		}
+
+		.border-#{$currentColorTone}-before {
+			&:before {
+				border-color: $currentColor;
+			}
+		}
+
+		.color-#{$currentColorTone} {
+			color: $currentColor;
+		}
+
+		a.color-#{$currentColorTone},
+		a.color-#{$currentColorTone}:visited {
+			color: $currentColor;
+		}
+		a.color-#{$currentColorTone}:hover {
+			color: $currentColor;
+			text-decoration: underline;
+		}
+	}
+}
+
+.color-black {
+	color: $black !important;
+	p {
+		color: $black !important;
+	}
+}
+.color-white {
+	color: $white;
+}
+.theme-white {
+	background-color: $white;
+}
